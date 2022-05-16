@@ -10,7 +10,7 @@ You control a chicken in a 3D top down view surviving as long as possible as mon
 - Pause Screen
 - Save & Load
 - Game Over menu
-- Player Movement (Right-Click style)
+- Player Movement (WASD)
 - Animations
 - Camera Movement
 - Multiple Scenes
