@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Animator playerAnim;
+    public Animator playerAnim;
+    AudioSource audioSource;
+    public AudioClip chickenHurtClip;
 
     private float horizontalInput;
     private float forwardInput;
     [SerializeField] private float speed = 1;
+    private Vector3 lookDirection = new Vector3(1, 0, 0);
+    private Rigidbody rigidbody;
 
-    Vector3 lookDirection = new Vector3(1, 0, 0);
-    Rigidbody rigidbody;
+    public int maxHealth = 5;
+    public int health { get { return currentHealth; } }
+    int currentHealth;
     // Start is called before the first frame update
     void Start()
     {
         playerAnim = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -41,8 +48,11 @@ public class PlayerController : MonoBehaviour
         }
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 40f);
         
-        
-
+        // Peck Attack
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+        }
     }
 
     private void FixedUpdate()
@@ -52,5 +62,20 @@ public class PlayerController : MonoBehaviour
         position.z = position.z + speed * forwardInput * Time.deltaTime;
 
         rigidbody.MovePosition(position);
+    }
+
+    void Attack()
+    {
+        playerAnim.Play("Eat");
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        if (amount < 0)
+        {
+            audioSource.PlayOneShot(chickenHurtClip);
+        }
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 }
