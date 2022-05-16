@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Animator playerAnim;
     AudioSource audioSource;
     public AudioClip chickenHurtClip;
+    public ParticleSystem deathParticle;
 
     private float horizontalInput;
     private float forwardInput;
@@ -74,8 +75,15 @@ public class PlayerController : MonoBehaviour
         if (amount < 0)
         {
             audioSource.PlayOneShot(chickenHurtClip);
+            
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+        Debug.Log(currentHealth + " / " + maxHealth);
+        if (currentHealth <= 0)
+        {
+            deathParticle.Play();
+            Destroy(gameObject, 1.0f);
+        }
     }
 }
