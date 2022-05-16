@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+    private PlayerController playerControllerScript;
     public GameObject player;
     private Vector3 offset = new Vector3(0, 4, -4);
-
-    // Update is called once per frame
+    void Start()
+    {
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
     void Update()
     {
-        transform.position = player.transform.position + offset;
+        if (!playerControllerScript.gameOver)
+            transform.position = player.transform.position + offset;
     }
 }

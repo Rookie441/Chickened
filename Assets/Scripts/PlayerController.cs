@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private float lowerBound = -5;
+
     public Animator playerAnim;
     AudioSource audioSource;
     public AudioClip chickenHurtClip;
@@ -13,11 +15,15 @@ public class PlayerController : MonoBehaviour
     private float forwardInput;
     [SerializeField] private float speed = 1;
     private Vector3 lookDirection = new Vector3(1, 0, 0);
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     private Rigidbody rigidbody;
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 
     public int maxHealth = 5;
     public int health { get { return currentHealth; } }
     int currentHealth;
+
+    public bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,44 +36,65 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        forwardInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");      
+        if (!gameOver)
+        {
+            forwardInput = Input.GetAxis("Vertical");
+            horizontalInput = Input.GetAxis("Horizontal");
 
-        Vector3 move = new Vector3(horizontalInput, 0, forwardInput);
+            Vector3 move = new Vector3(horizontalInput, 0, forwardInput);
 
-        // Check if player is moving
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.z, 0.0f))
-        {
-            lookDirection.Set(move.x, move.y, move.z);
-            lookDirection.Normalize();
-            playerAnim.SetBool("Walk", true);
+            // Check if player is moving
+            if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.z, 0.0f))
+            {
+                lookDirection.Set(move.x, move.y, move.z);
+                lookDirection.Normalize();
+                playerAnim.SetBool("Walk", true);
+            }
+            // Player is not moving
+            else
+            {
+                playerAnim.SetBool("Walk", false);
+            }
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 40f);
+
+            // Peck Attack
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Attack();
+            }
+
+            // Fall off death
+            if (transform.position.y < lowerBound)
+            {
+                ChangeHealth(-maxHealth);
+            }
         }
-        // Player is not moving
-        else
-        {
-            playerAnim.SetBool("Walk", false);
-        }
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 40f);
-        
-        // Peck Attack
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Attack();
-        }
+
     }
 
     private void FixedUpdate()
     {
-        Vector3 position = rigidbody.position;
-        position.x = position.x + speed * horizontalInput * Time.deltaTime;
-        position.z = position.z + speed * forwardInput * Time.deltaTime;
+        if (!gameOver)
+        {
+            Vector3 position = rigidbody.position;
+            position.x = position.x + speed * horizontalInput * Time.deltaTime;
+            position.z = position.z + speed * forwardInput * Time.deltaTime;
 
-        rigidbody.MovePosition(position);
+            rigidbody.MovePosition(position);
+        }
+        
     }
 
     void Attack()
     {
         playerAnim.Play("Eat");
+    }
+
+    void Die()
+    {
+        deathParticle.Play();
+        gameOver = true;
+        Destroy(gameObject, 0.8f);
     }
 
     public void ChangeHealth(int amount)
@@ -82,8 +109,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(currentHealth + " / " + maxHealth);
         if (currentHealth <= 0)
         {
-            deathParticle.Play();
-            Destroy(gameObject, 1.0f);
+            Die();
         }
     }
 }

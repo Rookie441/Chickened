@@ -10,6 +10,9 @@ public class DestroyOutOfBounds : MonoBehaviour
     void Update()
     {
         if (transform.position.y < lowerBound)
+        {
             Destroy(gameObject);
+        }
+            
     }
 }

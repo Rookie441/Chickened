@@ -2,7 +2,8 @@
 Imported Assets:  
 [Meshtint Studio](https://assetstore.unity.com/publishers/3867)  
 [Chicken Sound Effect](https://www.youtube.com/watch?v=ML6QPGbfMS4)  
-create with course course library (audio)  
+[Rubber Chicken Icon](https://www.kindpng.com/imgv/iiJmhob_rubber-chicken-png-transparent-png/)  
+create with course course library (audio, particle effects)  
 ruby adventure (UI)
 
 Unity Version: *2021.3.2f1*  
