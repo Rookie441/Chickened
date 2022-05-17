@@ -13,13 +13,10 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    private void Start()
-    {
-        //do something with test
-    }
 
     public void StartNew()
     {
+        // navigate to level selector
         SceneManager.LoadScene(1);
     }
 
@@ -31,4 +28,5 @@ public class MenuUIHandler : MonoBehaviour
         Application.Quit(); // original code to quit Unity player
 #endif
     }
+
 }

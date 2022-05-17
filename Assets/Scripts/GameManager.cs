@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public bool paused;
     private PlayerController playerControllerScript;
+    public static int currentLevel;
 
     void Start()
     {
@@ -52,5 +53,10 @@ public class GameManager : MonoBehaviour
         pauseScreen.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+    }
+
+    public void IncreaseLevel()
+    {
+        currentLevel++;
     }
 }

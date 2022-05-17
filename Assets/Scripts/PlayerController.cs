@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -111,5 +112,12 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void CompleteLevel()
+    {
+        MainManager.Instance.currentLevel++;
+        MainManager.Instance.LoadLevel();
+        // to-do: add a check to see if it is last level (no more new level)
     }
 }
