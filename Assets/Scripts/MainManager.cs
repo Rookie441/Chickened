@@ -23,7 +23,7 @@ public class MainManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(currentLevel+1); // Level 1 start from index 2
+        SceneManager.LoadScene(currentLevel); // Level 1 start from index 1
     }
 
     [System.Serializable]
@@ -34,12 +34,19 @@ public class MainManager : MonoBehaviour
 
     public void SaveLevel()
     {
-        SaveData data = new SaveData();
-        data.currentLevel = currentLevel;
+        SaveData newData = new SaveData();
+        newData.currentLevel = currentLevel;
 
-        string json = JsonUtility.ToJson(data);
+        // If previous savefile exists, set level to highest attained because user might be replaying an earlier level
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(File.ReadAllText(path));
+            newData.currentLevel = newData.currentLevel > data.currentLevel ? currentLevel : data.currentLevel;
+        }
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        string json = JsonUtility.ToJson(newData);
+        File.WriteAllText(path, json);
     }
 
    

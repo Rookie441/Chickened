@@ -118,13 +118,24 @@ public class PlayerController : MonoBehaviour
     {
         if (MainManager.Instance != null) //may occur during editor mode if menu scene is skipped
         {
-            // to-do: add a check to see if it is last level (no more new level)
-            MainManager.Instance.currentLevel++;
-            MainManager.Instance.LoadLevel();
+            //Check to see if it is last level (no more new level)
+            int totalLevels = SceneManager.sceneCountInBuildSettings - 1; //exclude menu scene
+            if (MainManager.Instance.currentLevel < totalLevels)
+            {
+                MainManager.Instance.currentLevel++;
+                MainManager.Instance.LoadLevel();
+                //save progress
+                MainManager.Instance.SaveLevel();
+            }
+            else
+            {
+                Debug.Log("Congratulations you completed all levels");
+                //to-do: show omega badge on menu
+            }
+            
             
 
-            //save progress
-            MainManager.Instance.SaveLevel();
+            
         }
 
     }

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,11 +12,13 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
-
+    public GameObject menuScreen;
+    public GameObject levelSelectorScreen;
     public void StartNew()
     {
-        // navigate to level selector
-        SceneManager.LoadScene(1);
+        // "navigate" to level selector
+        menuScreen.SetActive(false);
+        levelSelectorScreen.SetActive(true);
     }
 
     public void Exit()
