@@ -4839,7 +4839,7 @@ GameObject:
   - component: {fileID: 65707845505491674}
   - component: {fileID: 9130940276137374627}
   m_Layer: 0
-  m_Name: Waypoint 01
+  m_Name: Waypoint
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

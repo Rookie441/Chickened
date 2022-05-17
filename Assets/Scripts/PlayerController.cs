@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidbody;
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 
-    public int maxHealth = 5;
+    private int maxHealth = 10;
     public int health { get { return currentHealth; } }
     int currentHealth;
 
