@@ -29,13 +29,15 @@ You control a chicken in a 3D top down view trying to escape the world through t
 *Brief notes*  
 - save path: C:\Users\custo\AppData\LocalLow\DefaultCompany\Chickened
 
+- red buttons to remove bridges?
+- pecking (ray casting from ruby's adventure for peck attack)
+- moving monsters
 - moving platform
-- health bar text number 10/10
-- ray casting from ruby's adventure for peck attack
+- levers
+- multiple waypoints
+
 - text popup for puzzles, require text input from user as answer
 - clickable canvas for displaying of hints
-
-- change camera perspective
 - more options in pause menu (retry), rename return to menu to "Save and Exit" --> Extension: Yes/No
 - more options in gameover menu (retry)
 - show time of completion on level selection? or badge upon full completion

@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
             
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+        UIHealthBar.instance.SetValue(currentHealth, maxHealth);
         Debug.Log(currentHealth + " / " + maxHealth);
         if (currentHealth <= 0)
         {

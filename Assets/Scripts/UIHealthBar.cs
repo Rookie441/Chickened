@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIHealthBar : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class UIHealthBar : MonoBehaviour
 
     public Image mask;
     float originalSize;
+    public TextMeshProUGUI livesText;
+
+    private int maxHealth = 10;
 
     void Awake()
     {
@@ -18,10 +22,12 @@ public class UIHealthBar : MonoBehaviour
     void Start()
     {
         originalSize = mask.rectTransform.rect.width;
+        livesText.text = maxHealth + " / " + maxHealth;
     }
 
-    public void SetValue(float value)
+    public void SetValue(int currentHealth, int maxHealth)
     {
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * (currentHealth / (float)maxHealth));
+        livesText.text = currentHealth +  " / " + maxHealth;
     }
 }
