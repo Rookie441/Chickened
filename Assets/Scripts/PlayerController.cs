@@ -116,8 +116,16 @@ public class PlayerController : MonoBehaviour
 
     public void CompleteLevel()
     {
-        MainManager.Instance.currentLevel++;
-        MainManager.Instance.LoadLevel();
-        // to-do: add a check to see if it is last level (no more new level)
+        if (MainManager.Instance != null) //may occur during editor mode if menu scene is skipped
+        {
+            // to-do: add a check to see if it is last level (no more new level)
+            MainManager.Instance.currentLevel++;
+            MainManager.Instance.LoadLevel();
+            
+
+            //save progress
+            MainManager.Instance.SaveLevel();
+        }
+
     }
 }

@@ -26,8 +26,10 @@ You control a chicken in a 3D top down view surviving as long as possible as mon
 
 
 *Brief notes*  
+- save path: C:\Users\custo\AppData\LocalLow\DefaultCompany\Chickened
 - more options in pause menu (retry), rename return to menu to "Save and Exit" --> Extension: Yes/No
 - more options in gameover menu (retry)
 - have level selection after start game, showing highscore, locked unplayed levels
+- create save files. Extension: unique player ID, encryption
 - when level is complete go straight to next level and save automatically. Extension: Add level complete animation
 - Extension: New music at different levels

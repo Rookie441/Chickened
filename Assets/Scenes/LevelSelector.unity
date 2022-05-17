@@ -336,7 +336,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 242471255}
   m_OnClick:
     m_PersistentCalls:
@@ -1365,3 +1365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b5edda6bb4ee444abaf53748ae09f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelList:
+  - {fileID: 139210405}
+  - {fileID: 242471254}
