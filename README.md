@@ -9,7 +9,7 @@ ruby adventure (UI)
 Unity Version: *2021.3.2f1*  
 
 ### Gameplay (Subject to Changes)
-You control a chicken in a 3D top down view surviving as long as possible as monsters try to eat you. Use the environment to your advantage.
+You control a chicken in a 3D top down view trying to escape the world through the waypoint. Avoid obstacles and use the environment to get to the destination.
 
 ### Features (Subject to Changes)
 - Health Bar UI
@@ -22,11 +22,18 @@ You control a chicken in a 3D top down view surviving as long as possible as mon
 - Camera Movement
 - Multiple Scenes
 - Powerups/Environment
-- Waves of monsters
+- Monster aggro
+- Buttons and bridges
 
 
 *Brief notes*  
 - save path: C:\Users\custo\AppData\LocalLow\DefaultCompany\Chickened
+
+- moving platform
+- health bar text number 10/10
+- ray casting from ruby's adventure for peck attack
+- text popup for puzzles, require text input from user as answer
+- clickable canvas for displaying of hints
 
 - change camera perspective
 - more options in pause menu (retry), rename return to menu to "Save and Exit" --> Extension: Yes/No

@@ -383,8 +383,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.20702672, y: 0.044974864, z: 0.15352187}
-  m_Center: {x: 0.002283464, y: 0.019663468, z: 0.0024706523}
+  m_Size: {x: 0.16315116, y: 0.13978776, z: 0.23259866}
+  m_Center: {x: 0.0024835519, y: 0.06706993, z: 0.005466481}
 --- !u!82 &977051569
 AudioSource:
   m_ObjectHideFlags: 0
@@ -497,7 +497,6 @@ MonoBehaviour:
   chickenHurtClip: {fileID: 8300000, guid: 45281ab95803e81478c250616bd6e9f3, type: 3}
   deathParticle: {fileID: 9125212450803565597}
   speed: 1
-  maxHealth: 5
   gameOver: 0
 --- !u!1 &1325880688823160
 GameObject:
