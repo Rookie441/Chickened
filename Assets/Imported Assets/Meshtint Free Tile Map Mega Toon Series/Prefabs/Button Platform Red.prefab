@@ -46,8 +46,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7151579, y: 0.03328338, z: 0.7151579}
-  m_Center: {x: 0, y: 0.055119574, z: 0}
+  m_Size: {x: 1, y: 0.04, z: 1}
+  m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!114 &2405965319268275799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082975714d63c804c8e77616b95752d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bridgesPrefab: []
 --- !u!1 &1662897078418882
 GameObject:
   m_ObjectHideFlags: 0

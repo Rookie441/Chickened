@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float forwardInput;
     [SerializeField] private float speed = 1;
-    private Vector3 lookDirection = new Vector3(1, 0, 0);
+    private Vector3 lookDirection = new Vector3(0, 0, 0);
 #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     private Rigidbody rigidbody;
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
@@ -47,9 +47,11 @@ public class PlayerController : MonoBehaviour
             // Check if player is moving
             if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.z, 0.0f))
             {
+                playerAnim.SetBool("Walk", true);
                 lookDirection.Set(move.x, move.y, move.z);
                 lookDirection.Normalize();
-                playerAnim.SetBool("Walk", true);
+                
+
             }
             // Player is not moving
             else
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
             }
 
             transform.rotation = Quaternion.LookRotation(lookDirection);
-            
+
             // Peck Attack
             if (Input.GetKeyDown(KeyCode.Space))
             {

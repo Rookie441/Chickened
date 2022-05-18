@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonPlatform : MonoBehaviour
 {
     public GameObject[] bridgesPrefab;
+    private bool pressed = false;
     void OnTriggerEnter(Collider other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
@@ -18,8 +19,27 @@ public class ButtonPlatform : MonoBehaviour
             {
                 foreach (GameObject bridge in bridgesPrefab)
                 {
-                    bridge.SetActive(true);
+                    if (!pressed)
+                    {
+                        bridge.SetActive(true);
+                    }
+                        
                 }
+                pressed = true;
+            }
+
+            // If Red button, remove bridges
+            if (gameObject.CompareTag("RedButton"))
+            {
+                foreach (GameObject bridge in bridgesPrefab)
+                {
+                    if (!pressed)
+                    {
+                        bridge.SetActive(false);
+                    }
+                    
+                }
+                pressed = true;
             }
         }
     }
