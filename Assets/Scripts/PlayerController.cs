@@ -56,8 +56,9 @@ public class PlayerController : MonoBehaviour
             {
                 playerAnim.SetBool("Walk", false);
             }
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 40f);
 
+            transform.rotation = Quaternion.LookRotation(lookDirection);
+            
             // Peck Attack
             if (Input.GetKeyDown(KeyCode.Space))
             {
