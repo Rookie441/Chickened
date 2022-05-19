@@ -4,6 +4,13 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+To add a new level:
+- Editor -> Copy paste previous level
+- Build settings -> Add open Scenes
+- Menu scene -> Copy paste level text, set button position, change onClick() parameter
+- Menu scene -> Add and drag level button in LevelSelector Canvas's script
+*/
 public class LevelSelectorUIHandler : MonoBehaviour
 {
     public List<Button> levelList;

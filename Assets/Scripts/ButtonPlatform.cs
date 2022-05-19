@@ -5,42 +5,44 @@ using UnityEngine;
 public class ButtonPlatform : MonoBehaviour
 {
     public GameObject[] bridgesPrefab;
+    public GameObject[] oldPatrolPrefab;
+    public GameObject[] newPatrolPrefab;
     private bool pressed = false;
     void OnTriggerEnter(Collider other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
-        if (controller != null)
+        if (controller != null && !pressed)
         {
             // Depress button
             gameObject.transform.localScale = new Vector3(1, 1, 1);
 
-            // If Blue button, create bridges
+            // If Blue button, add bridges, remove old patrol point, add new patrol point
             if (gameObject.CompareTag("BlueButton"))
             {
-                foreach (GameObject bridge in bridgesPrefab)
-                {
-                    if (!pressed)
-                    {
-                        bridge.SetActive(true);
-                    }
-                        
-                }
-                pressed = true;
+                ActivatePrefabs(true, false, true);
             }
-
-            // If Red button, remove bridges
-            if (gameObject.CompareTag("RedButton"))
+            // If Red button, remove bridges, add old patrol point, remove new patrol point 
+            else if (gameObject.CompareTag("RedButton"))
             {
-                foreach (GameObject bridge in bridgesPrefab)
-                {
-                    if (!pressed)
-                    {
-                        bridge.SetActive(false);
-                    }
-                    
-                }
-                pressed = true;
+                ActivatePrefabs(false, true, false);
             }
+            pressed = true;
+        }
+    }
+
+    void ActivatePrefabs(bool isActiveBridge, bool isActiveOldPatrol, bool isActiveNewPatrol)
+    {
+        foreach (GameObject bridge in bridgesPrefab)
+        {
+            bridge.SetActive(isActiveBridge);
+        }
+        foreach (GameObject oldPatrol in oldPatrolPrefab)
+        {
+            oldPatrol.SetActive(isActiveOldPatrol);
+        }
+        foreach (GameObject newPatrol in newPatrolPrefab)
+        {
+            newPatrol.SetActive(isActiveNewPatrol);
         }
     }
 }

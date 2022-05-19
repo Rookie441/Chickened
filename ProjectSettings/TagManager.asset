@@ -8,6 +8,8 @@ TagManager:
   - Bridge
   - BlueButton
   - RedButton
+  - Enemy
+  - Patrol
   layers:
   - Default
   - TransparentFX
