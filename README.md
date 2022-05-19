@@ -35,7 +35,6 @@ You control a chicken in a 3D top down view trying to escape the world through t
 - multiple waypoints
 - 3d platforms
 
-- add background image for levels, menu screen etc.
 - clickable canvas for displaying of hints
 - more options in pause menu (retry), rename return to menu to "Save and Exit" --> Extension: Yes/No
 - more options in gameover menu (retry)
