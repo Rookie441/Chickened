@@ -36,8 +36,6 @@ You control a chicken in a 3D top down view trying to escape the world through t
 - 3d platforms
 
 - clickable canvas for displaying of hints
-- more options in pause menu (retry), rename return to menu to "Save and Exit" --> Extension: Yes/No
-- more options in gameover menu (retry)
 - show death count on level selection and/or badge upon full completion
 - save files: unique player ID, encryption
 - Add level complete animation
