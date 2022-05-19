@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private float speed = 1.5f;
+    [SerializeField] private float speed = 1.5f;
     private float pushForce = 10.0f;
     public Animator enemyAnim;
 
