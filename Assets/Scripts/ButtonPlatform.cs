@@ -8,6 +8,14 @@ public class ButtonPlatform : MonoBehaviour
     public GameObject[] oldPatrolPrefab;
     public GameObject[] newPatrolPrefab;
     private bool pressed = false;
+
+    AudioSource audioSource;
+    public AudioClip buttonPressedClip;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void OnTriggerEnter(Collider other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
@@ -15,6 +23,9 @@ public class ButtonPlatform : MonoBehaviour
         {
             // Depress button
             gameObject.transform.localScale = new Vector3(1, 1, 1);
+
+            // Play Activation Sound
+            audioSource.PlayOneShot(buttonPressedClip);
 
             // If Blue button, add bridges, remove old patrol point, add new patrol point
             if (gameObject.CompareTag("BlueButton"))
