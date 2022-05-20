@@ -9,6 +9,8 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
     public int currentLevel;
     public float volumeLevel;
+
+    private static readonly string keyWord = "Chickened";
     private void Awake()
     {
         // Singleton that persists between scenes
@@ -49,7 +51,8 @@ public class MainManager : MonoBehaviour
         }
 
         string json = JsonUtility.ToJson(newData);
-        File.WriteAllText(path, json);
+        string encryptedJson = EncryptDecrypt(json);
+        File.WriteAllText(path, encryptedJson);
     }
 
     public void SaveCompletionist()
@@ -57,7 +60,18 @@ public class MainManager : MonoBehaviour
         SaveData data = new SaveData();
         data.isLastLevel = true;
         string json = JsonUtility.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        string encryptedJson = EncryptDecrypt(json);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", encryptedJson);
+    }
+
+    public string EncryptDecrypt(string data)
+    {
+        string result = "";
+        for (int i = 0; i < data.Length; i++)
+        {
+            result += (char)(data[i] ^ keyWord[i % keyWord.Length]);
+        }
+        return result;
     }
 
    

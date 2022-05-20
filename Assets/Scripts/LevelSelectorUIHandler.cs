@@ -39,7 +39,7 @@ public class LevelSelectorUIHandler : MonoBehaviour
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(json);
+            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(MainManager.Instance.EncryptDecrypt(json));
 
             for (int i=0; i<data.currentLevel; i++)
                 levelList[i].interactable = true;
@@ -52,7 +52,7 @@ public class LevelSelectorUIHandler : MonoBehaviour
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(json);
+            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(MainManager.Instance.EncryptDecrypt(json));
 
             return data.isLastLevel;
         }

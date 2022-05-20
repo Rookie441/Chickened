@@ -29,7 +29,7 @@ You control a chicken in a 3D top down view trying to escape the world through t
 *Brief notes*  
 - save path: C:\Users\custo\AppData\LocalLow\DefaultCompany\Chickened
 
-- save files encryption
+- add try catch block for json parsing issue when loading saves
 - Add level complete animation
 - check for resolution issues
 
