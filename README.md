@@ -29,7 +29,6 @@ You control a chicken in a 3D top down view trying to escape the world through t
 *Brief notes*  
 - save path: C:\Users\custo\AppData\LocalLow\DefaultCompany\Chickened
 
-- pecking (ray casting from ruby's adventure for peck attack)
 - check for resolution issues
 - show death count on level selection and/or badge upon full completion
 - save files: unique player ID, encryption
@@ -43,4 +42,8 @@ You control a chicken in a 3D top down view trying to escape the world through t
 - trampoline/ladders
 - clickable canvas for displaying of hints
 - New music at different levels
+- add sound effects for menu buttons
 - load volume slider position from saved file attribute
+- random generated bonus levels
+- maze and navmesh agent
+- add hidden levels (easter eggs)

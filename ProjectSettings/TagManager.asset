@@ -4,12 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Trap
-  - Bridge
   - BlueButton
   - RedButton
   - Enemy
   - Patrol
+  - Water
+  - Trap
+  - Bridge
+  - Block
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Block
   - 
   - 
   - 

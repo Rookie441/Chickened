@@ -19,7 +19,7 @@ public class ButtonPlatform : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
-        if (controller != null && !pressed)
+        if ((controller != null && !pressed) || (other.gameObject.CompareTag("Block") && !pressed))
         {
             // Depress button
             gameObject.transform.localScale = new Vector3(1, 1, 1);

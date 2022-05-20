@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseScreen;
     public GameObject gameOverScreen;
+    public GameObject congratulationsScreen;
     public bool paused;
     private PlayerController playerControllerScript;
 
@@ -63,6 +64,15 @@ public class GameManager : MonoBehaviour
         {
             gameOverScreen.SetActive(true);
             paused = true; //disable pausing when game is over
+        }
+
+        // If player finishes all levels
+        else if (playerControllerScript.gameComplete)
+        {
+            // to-do: sound effects/cutscene for game completion
+            paused = true;
+            Time.timeScale = 0;
+            congratulationsScreen.SetActive(true);
         }
     }
 }

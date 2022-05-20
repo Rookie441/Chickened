@@ -24,14 +24,18 @@ public class PlayerController : MonoBehaviour
     public int health { get { return currentHealth; } }
     int currentHealth;
 
+    //to-do: move to mainmanager
     public bool gameOver = false;
+    public bool gameComplete = false;
+
     // Start is called before the first frame update
     void Start()
     {
         playerAnim = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = MainManager.Instance.volumeLevel;
+        if (MainManager.Instance != null) //may occur during editor mode if menu scene is skipped
+            audioSource.volume = MainManager.Instance.volumeLevel;
         currentHealth = maxHealth;
     }
 
@@ -93,6 +97,18 @@ public class PlayerController : MonoBehaviour
     void Attack()
     {
         playerAnim.Play("Eat");
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, fwd, out hit, 0.5f, LayerMask.GetMask("Block")))
+        {
+            //Destroy(hit.collider.gameObject);
+            Rigidbody enemyRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (hit.collider.gameObject.transform.position - transform.position);
+            enemyRigidbody.AddForce(awayFromPlayer * 10f, ForceMode.Impulse);
+            Debug.Log(hit.collider.name);
+        }
+
+            
     }
 
     void Die()
@@ -134,6 +150,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.Log("Congratulations you completed all levels");
+                gameComplete = true;
                 //to-do: show omega badge on menu
             }
             
