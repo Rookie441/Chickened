@@ -15,7 +15,6 @@ public class MenuUIHandler : MonoBehaviour
     public GameObject menuScreen;
     public GameObject levelSelectorScreen;
     public GameObject controlsScreen;
-
     public void StartNew()
     {
         // "navigate" to level selector

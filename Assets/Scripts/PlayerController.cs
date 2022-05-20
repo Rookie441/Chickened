@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = MainManager.Instance.volumeLevel;
         currentHealth = maxHealth;
     }
 

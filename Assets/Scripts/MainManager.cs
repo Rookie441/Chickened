@@ -8,6 +8,7 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
     public int currentLevel;
+    public float volumeLevel;
     private void Awake()
     {
         // Singleton that persists between scenes
@@ -16,7 +17,7 @@ public class MainManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
