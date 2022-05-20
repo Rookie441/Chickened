@@ -6,12 +6,19 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float speed = 1.5f;
     private float pushForce = 10.0f;
+    private float lowerBound = -10;
     public Animator enemyAnim;
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        // Destroy Out of Bounds
+        if (transform.position.y < lowerBound)
+        {
+            Destroy(gameObject);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
