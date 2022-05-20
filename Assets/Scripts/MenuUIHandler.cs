@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -15,12 +16,14 @@ public class MenuUIHandler : MonoBehaviour
     public GameObject menuScreen;
     public GameObject levelSelectorScreen;
     public GameObject controlsScreen;
+
     public void StartNew()
     {
         // "navigate" to level selector
         menuScreen.SetActive(false);
         controlsScreen.SetActive(false);
         levelSelectorScreen.SetActive(true);
+
     }
 
     public void showControls()

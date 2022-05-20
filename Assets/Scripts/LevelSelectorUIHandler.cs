@@ -14,11 +14,14 @@ To add a new level:
 public class LevelSelectorUIHandler : MonoBehaviour
 {
     public List<Button> levelList;
+    public RawImage starImage;
 
     private void Start()
     {
         // disable levels based on save files
         LoadLevelSelection();
+        // show star image if game is fully completed
+        starImage.enabled = LoadCompletionist();
 
     }
     public void NewLevelSelected(int level)
@@ -41,5 +44,18 @@ public class LevelSelectorUIHandler : MonoBehaviour
             for (int i=0; i<data.currentLevel; i++)
                 levelList[i].interactable = true;
         }
+    }
+
+    public bool LoadCompletionist()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(json);
+
+            return data.isLastLevel;
+        }
+        return false;
     }
 }

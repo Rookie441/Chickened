@@ -71,8 +71,9 @@ public class GameManager : MonoBehaviour
         {
             // to-do: sound effects/cutscene for game completion
             paused = true;
-            Time.timeScale = 0;
             congratulationsScreen.SetActive(true);
+            bool isLastLevel = true;
+            MainManager.Instance.SaveLevel(isLastLevel);
         }
     }
 }

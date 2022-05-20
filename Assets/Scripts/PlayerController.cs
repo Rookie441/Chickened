@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameOver)
+        if (!gameOver && !gameComplete)
         {
             forwardInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
@@ -77,6 +77,11 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeHealth(-maxHealth);
             }
+        }
+        else
+        {
+            // stop player from moving when game is complete
+            speed = 0;
         }
 
     }
@@ -145,7 +150,8 @@ public class PlayerController : MonoBehaviour
                 MainManager.Instance.currentLevel++;
                 MainManager.Instance.LoadLevel();
                 //save progress
-                MainManager.Instance.SaveLevel();
+                bool isLastLevel = false;
+                MainManager.Instance.SaveLevel(isLastLevel);
             }
             else
             {

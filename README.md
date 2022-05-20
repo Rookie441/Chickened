@@ -29,10 +29,9 @@ You control a chicken in a 3D top down view trying to escape the world through t
 *Brief notes*  
 - save path: C:\Users\custo\AppData\LocalLow\DefaultCompany\Chickened
 
-- check for resolution issues
-- show death count on level selection and/or badge upon full completion
-- save files: unique player ID, encryption
+- save files encryption
 - Add level complete animation
+- check for resolution issues
 
 *Future update features*  
 - moving platform
@@ -47,3 +46,5 @@ You control a chicken in a 3D top down view trying to escape the world through t
 - random generated bonus levels
 - maze and navmesh agent
 - add hidden levels (easter eggs)
+- unique player ID for multiple save files
+- show death count/retry statistics

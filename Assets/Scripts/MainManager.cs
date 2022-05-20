@@ -31,12 +31,14 @@ public class MainManager : MonoBehaviour
     public class SaveData
     {
         public int currentLevel;
+        public bool isLastLevel;
     }
 
-    public void SaveLevel()
+    public void SaveLevel(bool isLastLevel)
     {
         SaveData newData = new SaveData();
         newData.currentLevel = currentLevel;
+        newData.isLastLevel = isLastLevel;
 
         // If previous savefile exists, set level to highest attained because user might be replaying an earlier level
         string path = Application.persistentDataPath + "/savefile.json";
@@ -48,6 +50,14 @@ public class MainManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(newData);
         File.WriteAllText(path, json);
+    }
+
+    public void SaveCompletionist()
+    {
+        SaveData data = new SaveData();
+        data.isLastLevel = true;
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
    
