@@ -18,12 +18,10 @@ public class LevelSelectorUIHandler : MonoBehaviour
 
     private void Start()
     {
-        // disable levels based on save files
-        LoadLevelSelection();
-        // show star image if game is fully completed
-        starImage.enabled = LoadCompletionist();
-
+        LoadData();
     }
+
+    // Canvas: Level Buttons On Click() function
     public void NewLevelSelected(int level)
     {
         if (MainManager.Instance != null) //may occur during editor mode if menu scene is skipped
@@ -33,29 +31,30 @@ public class LevelSelectorUIHandler : MonoBehaviour
         }
     }
 
-    public void LoadLevelSelection()
+    public void LoadData()
     {
         string path = Application.persistentDataPath + "/savefile.json";
         if (File.Exists(path))
         {
-            string json = File.ReadAllText(path);
-            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(MainManager.Instance.EncryptDecrypt(json));
+            string encryptedJson = File.ReadAllText(path);
+            try
+            {
+                // Decrypt Data
+                MainManager.SaveData decryptedJson = JsonUtility.FromJson<MainManager.SaveData>(MainManager.Instance.EncryptDecrypt(encryptedJson));
 
-            for (int i=0; i<data.currentLevel; i++)
-                levelList[i].interactable = true;
+                // Load Level Selection : Disable levels based on savefile
+                for (int i = 0; i < decryptedJson.currentLevel; i++)
+                    levelList[i].interactable = true;
+
+                // Load Completionist: Show star image if game is fully completed
+                starImage.enabled = decryptedJson.isLastLevel;
+            }
+            catch
+            {
+                // Decryption failed, savefile has been corrupted, delete it
+                File.Delete(path);
+            }
         }
     }
 
-    public bool LoadCompletionist()
-    {
-        string path = Application.persistentDataPath + "/savefile.json";
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(MainManager.Instance.EncryptDecrypt(json));
-
-            return data.isLastLevel;
-        }
-        return false;
-    }
 }
