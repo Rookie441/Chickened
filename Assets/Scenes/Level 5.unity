@@ -2234,6 +2234,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 862275753}
   congratulationsScreen: {fileID: 1485983412}
   paused: 0
+  isGameOver: 0
+  isGameComplete: 0
 --- !u!1001 &823114286
 PrefabInstance:
   m_ObjectHideFlags: 0
