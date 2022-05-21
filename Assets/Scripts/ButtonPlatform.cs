@@ -7,7 +7,7 @@ public class ButtonPlatform : MonoBehaviour
     public GameObject[] bridgesPrefab;
     public GameObject[] oldPatrolPrefab;
     public GameObject[] newPatrolPrefab;
-    private bool pressed = false;
+    private bool pressed;
 
     AudioSource audioSource;
     public AudioClip buttonPressedClip;
@@ -16,12 +16,14 @@ public class ButtonPlatform : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
-    void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
+        // Buttons can be pressed by player or blocks. Once pressed, cannot be pressed again.
         if ((controller != null && !pressed) || (other.gameObject.CompareTag("Block") && !pressed))
         {
-            // Depress button
+            // Depress button (reduce y scale)
             gameObject.transform.localScale = new Vector3(1, 1, 1);
 
             // Play Activation Sound
@@ -32,16 +34,18 @@ public class ButtonPlatform : MonoBehaviour
             {
                 ActivatePrefabs(true, false, true);
             }
+
             // If Red button, remove bridges, add old patrol point, remove new patrol point 
             else if (gameObject.CompareTag("RedButton"))
             {
                 ActivatePrefabs(false, true, false);
             }
+
             pressed = true;
         }
     }
 
-    void ActivatePrefabs(bool isActiveBridge, bool isActiveOldPatrol, bool isActiveNewPatrol)
+    private void ActivatePrefabs(bool isActiveBridge, bool isActiveOldPatrol, bool isActiveNewPatrol)
     {
         foreach (GameObject bridge in bridgesPrefab)
         {

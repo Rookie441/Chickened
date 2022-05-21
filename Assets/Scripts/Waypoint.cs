@@ -9,11 +9,8 @@ public class Waypoint : MonoBehaviour
         PlayerController controller = other.GetComponent<PlayerController>();
         if (controller != null)
         {
-            // to-do: Level complete animation
-            //other.gameObject.transform.position = transform.position;
-            //other.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
-            //disable player movement, play animation
             controller.CompleteLevel();
+            // To-do: Level complete animation
         }
     }
 }

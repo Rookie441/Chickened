@@ -7,10 +7,14 @@ using System.IO;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
-    public int currentLevel;
-    public float volumeLevel;
 
+    public float volumeLevel;
+    public int currentLevel;
+    public int highestLevel;
+
+    // Encryption Key (EXPOSED)
     private static readonly string keyWord = "Chickened";
+
     private void Awake()
     {
         // Singleton that persists between scenes
@@ -19,7 +23,6 @@ public class MainManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -42,28 +45,14 @@ public class MainManager : MonoBehaviour
         newData.currentLevel = currentLevel;
         newData.isLastLevel = isLastLevel;
 
-        // If previous savefile exists, set level to highest attained because user might be replaying an earlier level
         string path = Application.persistentDataPath + "/savefile.json";
-        if (File.Exists(path))
-        {
-            MainManager.SaveData data = JsonUtility.FromJson<MainManager.SaveData>(File.ReadAllText(path));
-            newData.currentLevel = newData.currentLevel > data.currentLevel ? currentLevel : data.currentLevel;
-        }
 
         string json = JsonUtility.ToJson(newData);
         string encryptedJson = EncryptDecrypt(json);
         File.WriteAllText(path, encryptedJson);
     }
 
-    public void SaveCompletionist()
-    {
-        SaveData data = new SaveData();
-        data.isLastLevel = true;
-        string json = JsonUtility.ToJson(data);
-        string encryptedJson = EncryptDecrypt(json);
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", encryptedJson);
-    }
-
+    // Encryption Algorithm (EXPOSED)
     public string EncryptDecrypt(string data)
     {
         string result = "";
@@ -73,6 +62,4 @@ public class MainManager : MonoBehaviour
         }
         return result;
     }
-
-   
 }

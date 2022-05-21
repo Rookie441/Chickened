@@ -6,17 +6,16 @@ using TMPro;
 
 public class UIHealthBar : MonoBehaviour
 {
-    public static UIHealthBar instance { get; private set; }
+    public static UIHealthBar Instance { get; private set; }
 
     public Image mask;
-    float originalSize;
     public TextMeshProUGUI livesText;
-
+    private float originalSize;
     private int maxHealth = 10;
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     void Start()

@@ -6,12 +6,12 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float speed = 1.5f;
     private float pushForce = 10.0f;
-    private float lowerBound = -10;
+    private float lowerBound = -10.0f;
     public Animator enemyAnim;
 
-    // Update is called once per frame
     void Update()
     {
+        // Move forward continuously
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         // Destroy Out of Bounds
@@ -20,12 +20,13 @@ public class EnemyAI : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         // Duplicated enemy's box collider, but checked isTrigger to allow both collisions and triggers
         PlayerController controller = other.GetComponent<PlayerController>();
         if (controller != null)
         {
+            // Damage player and knock them back
             controller.ChangeHealth(-3);
             controller.playerAnim.Play("Run In Place");
             enemyAnim.Play("Attack 01");

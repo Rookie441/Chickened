@@ -5,19 +5,22 @@ using UnityEngine;
 public class BossAI : MonoBehaviour
 {
     [SerializeField] private float speed = 1.8f;
-    private float lowerBound = -15;
+    private float force = 10.0f;
+    private float lowerBound = -15.0f;
     public Animator enemyAnim;
     private GameObject player;
     private bool isAlive = true;
-    private void Start()
+
+    void Start()
     {
         player = GameObject.Find("Player");
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (isAlive && player!=null)
         {
+            // Chase Player
             Vector3 lookDirection = (player.transform.position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(lookDirection);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -33,13 +36,14 @@ public class BossAI : MonoBehaviour
                     controller.CompleteLevel();
                 }
             }
-        }
-        
-        
+        } 
     }
-    void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
         // Duplicated enemy's box collider, but checked isTrigger to allow both collisions and triggers
+
+        // Damage Player
         PlayerController controller = other.GetComponent<PlayerController>();
         if (controller != null)
         {
@@ -47,14 +51,13 @@ public class BossAI : MonoBehaviour
             enemyAnim.Play("Attack 01");
         }
 
+        // Push Blocks away
         if (other.gameObject.CompareTag("Block"))
         {
             enemyAnim.Play("Attack 02");
             Rigidbody enemyRigidbody = other.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (other.gameObject.transform.position - transform.position);
-            enemyRigidbody.AddForce(awayFromPlayer * 10f, ForceMode.Impulse);
+            enemyRigidbody.AddForce(awayFromPlayer * force, ForceMode.Impulse);
         }
-
     }
-
 }

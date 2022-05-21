@@ -8,7 +8,6 @@ public class MenuVolumeManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        //to-do: load volume slider position from saved file attribute
     }
 
     void Update()

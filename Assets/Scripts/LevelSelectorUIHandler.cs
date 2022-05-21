@@ -11,6 +11,7 @@ To add a new level:
 - Menu scene -> Copy paste level text, set button position, change onClick() parameter
 - Menu scene -> Add and drag level button in LevelSelector Canvas's script
 */
+
 public class LevelSelectorUIHandler : MonoBehaviour
 {
     public List<Button> levelList;
@@ -21,13 +22,17 @@ public class LevelSelectorUIHandler : MonoBehaviour
         LoadData();
     }
 
-    // Canvas: Level Buttons On Click() function
+    // LevelSelector Canvas: Level Buttons On Click() function
     public void NewLevelSelected(int level)
     {
-        if (MainManager.Instance != null) //may occur during editor mode if menu scene is skipped
+        if (MainManager.Instance != null) // May occur during editor mode if menu scene is skipped
         {
             MainManager.Instance.currentLevel = level;
             MainManager.Instance.LoadLevel();
+        }
+        else
+        {
+            Debug.Log("MainManger Instance could not be found. Please start game from Menu");
         }
     }
 
@@ -41,6 +46,9 @@ public class LevelSelectorUIHandler : MonoBehaviour
             {
                 // Decrypt Data
                 MainManager.SaveData decryptedJson = JsonUtility.FromJson<MainManager.SaveData>(MainManager.Instance.EncryptDecrypt(encryptedJson));
+                
+                // Pass data to Main Manager
+                MainManager.Instance.highestLevel = decryptedJson.currentLevel;
 
                 // Load Level Selection : Disable levels based on savefile
                 for (int i = 0; i < decryptedJson.currentLevel; i++)

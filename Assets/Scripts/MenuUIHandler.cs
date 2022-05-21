@@ -13,33 +13,16 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    public GameObject menuScreen;
-    public GameObject levelSelectorScreen;
-    public GameObject controlsScreen;
+    public GameObject[] screens;
 
-    public void StartNew()
+    // Show the screen specified in the On Click() parameter, and hide all other screens
+    public void ShowScreen(GameObject activeScreen)
     {
-        // "navigate" to level selector
-        menuScreen.SetActive(false);
-        controlsScreen.SetActive(false);
-        levelSelectorScreen.SetActive(true);
-
-    }
-
-    public void showControls()
-    {
-        // "navigate" to controls menu
-        menuScreen.SetActive(false);
-        levelSelectorScreen.SetActive(false);
-        controlsScreen.SetActive(true);
-    }
-
-    public void Return()
-    {
-        // "navigate" to main menu
-        menuScreen.SetActive(true);
-        levelSelectorScreen.SetActive(false);
-        controlsScreen.SetActive(false);
+        foreach (GameObject screen in screens)
+        {
+            screen.SetActive(false);  
+        }
+        activeScreen.SetActive(true);
     }
 
     public void Exit()

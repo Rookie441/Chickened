@@ -485,11 +485,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2138604142}
         m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
-        m_MethodName: StartNew
-        m_Mode: 1
+        m_MethodName: ShowScreen
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2118688915}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -828,11 +828,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2138604142}
         m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
-        m_MethodName: showControls
-        m_Mode: 1
+        m_MethodName: ShowScreen
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2053671122}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1345,8 +1345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c2b0368888cdcc49a96c9342622dc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 0
   volumeLevel: 0
+  currentLevel: 0
+  highestLevel: 0
+  isGameOver: 0
+  isGameComplete: 0
 --- !u!4 &665839688
 Transform:
   m_ObjectHideFlags: 0
@@ -3668,11 +3671,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2138604142}
         m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
-        m_MethodName: Return
-        m_Mode: 1
+        m_MethodName: ShowScreen
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2138604137}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3937,11 +3940,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2138604142}
         m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
-        m_MethodName: Return
-        m_Mode: 1
+        m_MethodName: ShowScreen
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2138604137}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5098,6 +5101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a5a5ef05cc5dc4684a87a7f90b96e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuScreen: {fileID: 2138604137}
-  levelSelectorScreen: {fileID: 2118688915}
-  controlsScreen: {fileID: 2053671122}
+  screens:
+  - {fileID: 2138604137}
+  - {fileID: 2118688915}
+  - {fileID: 2053671122}
