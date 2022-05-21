@@ -77,7 +77,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             speed = 0;
-            transform.position = new Vector3(0, 0, 0);
+            if (gameManager.isGameComplete)
+                transform.position = new Vector3(0, 0, 0);
         }
             
     }
