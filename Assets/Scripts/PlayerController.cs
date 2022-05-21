@@ -75,7 +75,11 @@ public class PlayerController : MonoBehaviour
 
         // Stop player from moving when game is complete
         else
+        {
             speed = 0;
+            transform.position = new Vector3(0, 0, 0);
+        }
+            
     }
 
     private void FixedUpdate()
